@@ -15,7 +15,7 @@ export const LinksContainer = styled.div`
 export const LinkContainer = styled.div<LinkContainerProps>`
     display: flex;
     align-items: center;
-    width: 150px;
+    width: 200px;
     cursor: pointer;
     color: ${({ exact, }) => exact ? 'white' : '#c4c4c4'};
 

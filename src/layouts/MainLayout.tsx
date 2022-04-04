@@ -1,13 +1,22 @@
 import React from 'react';
 import { FC } from 'react';
+import { useSelector } from 'react-redux';
+import { ChilderContainer } from './styled';
 import { NavBar } from '@components/navbar';
+import { getNavbarOpen } from '@store/slices/navbar';
 
 export const MainLayout: FC = ({
   children,
-}) => (
-  <>
-    <NavBar />
+}) => {
+  const open = useSelector(getNavbarOpen);
 
-    {children}
-  </>
-);
+  return (
+    <>
+      <NavBar />
+
+      <ChilderContainer open={open}>
+        {children}
+      </ChilderContainer>
+    </>
+  );
+};

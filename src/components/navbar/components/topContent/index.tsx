@@ -2,46 +2,48 @@ import React from 'react';
 import { FC } from 'react';
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
+import { useDispatch } from 'react-redux';
 import { ArrowContainer, ArrowItem, SignContainer, SignIn, SignUp } from './styled';
+import { handleOpenNavbar, handleCloseNavbar } from '@store/slices/navbar';
 
 interface TopContentProps {
     open: boolean;
-    handleOpen: () => void;
-    handleClose: () => void;
 }
 
 export const TopContent: FC<TopContentProps> = ({
   open,
-  handleOpen,
-  handleClose,
-}) => (
-  <>
-    <ArrowContainer>
-      <ArrowItem
-        disabled={!open}
-        open={open}
-        onClick={handleClose}
-      >
-        <ArrowBackIcon/>
-      </ArrowItem>
+}) => {
+  const dispatch = useDispatch();
 
-      <ArrowItem
-        disabled={open}
-        open={!open}
-        onClick={handleOpen}
-      >
-        <ArrowForwardIcon />
-      </ArrowItem>
-    </ArrowContainer>
+  return  (
+    <>
+      <ArrowContainer>
+        <ArrowItem
+          disabled={!open}
+          open={open}
+          onClick={() => dispatch(handleCloseNavbar())}
+        >
+          <ArrowBackIcon/>
+        </ArrowItem>
 
-    <SignContainer>
-      <SignUp>
-            Зарегистрироваться
-      </SignUp>
+        <ArrowItem
+          disabled={open}
+          open={!open}
+          onClick={() => dispatch(handleOpenNavbar())}
+        >
+          <ArrowForwardIcon />
+        </ArrowItem>
+      </ArrowContainer>
 
-      <SignIn>
-            Войти
-      </SignIn>
-    </SignContainer>
-  </>
-);
+      <SignContainer>
+        <SignUp>
+              Зарегистрироваться
+        </SignUp>
+
+        <SignIn>
+              Войти
+        </SignIn>
+      </SignContainer>
+    </>
+  );
+};
