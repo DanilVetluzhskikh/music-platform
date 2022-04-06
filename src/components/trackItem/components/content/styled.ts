@@ -1,4 +1,9 @@
 import styled from 'styled-components';
+import { widthLeftBar } from '@constants/size';
+
+interface TrackItemBtnsContainer {
+    open: boolean;
+}
 
 export const TrackItemContent = styled.div`
     display: flex;
@@ -47,11 +52,12 @@ export const TrackItemListens = styled.span`
     color: #c4c4c4;
 `;
 
-export const TrackItemBtnsContainer = styled.div`
+export const TrackItemBtnsContainer = styled.div<TrackItemBtnsContainer>`
     position: absolute;
-    right: 50px;
+    right: ${({ open, }) => open ? `calc(50px + ${widthLeftBar})` : '50px'};
     display: flex;
     gap: 10px;
+    transition: all 300ms ease-in;
 `;
 
 const commonBtn = styled.button`

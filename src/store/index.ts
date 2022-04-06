@@ -1,10 +1,16 @@
 import { configureStore } from '@reduxjs/toolkit';
 
+import { getDefaultMiddleware } from '@reduxjs/toolkit';
+
 import {
   navbarReducer,
   trackReducer,
   tracksReducer
 } from './slices';
+
+const customizedMiddleware = getDefaultMiddleware({
+  serializableCheck: false,
+});
 
 export const store = configureStore({
   reducer: {
@@ -12,6 +18,7 @@ export const store = configureStore({
     tracks: tracksReducer,
     track: trackReducer,
   },
+  middleware: customizedMiddleware,
 });
 
 export type RootState = ReturnType<typeof store.getState>;

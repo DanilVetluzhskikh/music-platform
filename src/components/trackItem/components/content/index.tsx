@@ -7,6 +7,7 @@ import { TrackItemArtist, TrackItemBtnDelete, TrackItemBtnPlay, TrackItemBtnsCon
 import { Track } from '@type/track';
 import { API } from '@constants/api';
 import { getTrack, setActive, setCurrentTime, setDuration, setPause, setTrack } from '@store/slices/track';
+import { getNavbarOpen } from '@store/slices/navbar';
 
 interface ContentProps {
     item: Track
@@ -16,6 +17,8 @@ export const Content: FC<ContentProps> = ({
   item,
 }) => {
   const dispatch = useDispatch();
+
+  const open = useSelector(getNavbarOpen);
   const { track, pause, active, audio, } = useSelector(getTrack);
   const { picture, name, artist, listens, _id, } = item;
 
@@ -62,7 +65,7 @@ export const Content: FC<ContentProps> = ({
         <TrackItemListens>Прослушиваний <strong>{listens}</strong></TrackItemListens>
       </TrackItemTextContainer>
 
-      <TrackItemBtnsContainer>
+      <TrackItemBtnsContainer open={open}>
         <TrackItemBtnPlay onClick={handlePlay}>
           {equal && active ? <PauseIcon /> : <PlayArrowIcon />}
         </TrackItemBtnPlay>

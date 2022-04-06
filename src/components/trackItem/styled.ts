@@ -1,11 +1,6 @@
 import styled from 'styled-components';
-import { widthLeftBar } from '@constants/size';
 
-interface TrackItemContainerProps {
-    open: boolean;
-}
-
-export const TrackItemContainer = styled.div<TrackItemContainerProps>`
+export const TrackItemContainer = styled.div`
     transition: all 300ms ease-in;
-    width: ${({ open, }) => open ? `calc(100% - ${widthLeftBar})` : '100%'};
+    width: 100%;
 `;
