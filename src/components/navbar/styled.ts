@@ -17,7 +17,8 @@ export const NavbarLeftContainer = styled.div<ContainerProps>`
     position: fixed;
     display: flex;
     flex-direction: column;
-    align-items: center;
+    align-items: flex-start;
+    padding-left: 20px;
     transition: all 300ms ease-in;
 
     left: ${({ open, }) => open ? '0px' : `-${widthLeftBar}`};

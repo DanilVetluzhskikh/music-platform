@@ -1,6 +1,6 @@
 import React, { FC } from 'react';
-import PlayCircleIcon from '@mui/icons-material/PlayCircle';
-import { CardItem, Description, Image, ImageContainer, PlayBtn, Title } from './styled';
+import { useRouter } from 'next/router';
+import { CardItem, Description, Image, ImageContainer, Title } from './styled';
 import { API } from '@constants/api';
 import { Track } from '@type/track';
 
@@ -11,19 +11,16 @@ interface TrackProps {
 export const TrackItem: FC<TrackProps> = ({
   track,
 }) => {
-  const { picture, name, artist, } = track;
+  const router = useRouter();
+  const { picture, name, artist, _id, } = track;
 
   return (
-    <CardItem >
+    <CardItem onClick={() => router.push(`/track/${_id}`)}>
       <ImageContainer>
         <Image
           src={`${API}/${picture}`}
           alt="img"
         />
-
-        <PlayBtn>
-          <PlayCircleIcon sx={styles} />
-        </PlayBtn>
       </ImageContainer>
 
       <Title>
@@ -35,14 +32,4 @@ export const TrackItem: FC<TrackProps> = ({
       </Description>
     </CardItem>
   );
-};
-
-const styles = {
-  color: '#009605',
-  width: '50px',
-  height: '50px',
-  transition: 'all 150ms ease-in',
-  ':hover': {
-    transform: 'scale(1.2)',
-  },
 };

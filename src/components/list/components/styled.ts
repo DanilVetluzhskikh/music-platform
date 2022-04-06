@@ -23,6 +23,7 @@ export const Image = styled.img`
     width: 180px;
     height: 180px;
     border-radius: 5px;
+    object-fit: cover;
 `;
 
 export const ImageContainer = styled.div`
@@ -39,18 +40,4 @@ export const Title = styled.h1`
 export const Description = styled.span`
     font-size: 16px;
     margin-top: 10px;
-`;
-
-export const PlayBtn = styled.div`
-    position: absolute;
-    bottom: -30px;
-    right: 10px;
-    opacity: 0;
-    cursor: pointer;
-    transition: all 300ms ease-in;
-
-    ${CardItem}:hover & {
-        opacity: 1;
-        bottom: 5px;
-    }
 `;
